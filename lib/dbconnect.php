@@ -2,7 +2,7 @@
 
 $host='localhost';
 $db = 'griniaris';
-require_once "../www/db_upass.php";
+require_once "db_upass.php";
 
 $user=$DB_USER;
 $pass=$DB_PASS;

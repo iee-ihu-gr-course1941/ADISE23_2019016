@@ -1,0 +1,8 @@
+
+
+SELECT * from players 
+
+
+
+
+

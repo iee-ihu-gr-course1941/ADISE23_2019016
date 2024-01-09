@@ -56,7 +56,7 @@ switch ($r=array_shift($request)) {
             checkaborted();
             break;
 
-        case $user1 :
+        case 'sth' :
             switch ($b=array_shift($request)){
             //move_piece($method,$b);
             case $b :echopiece($b);
@@ -69,12 +69,7 @@ switch ($r=array_shift($request)) {
             echo $b;
         }
         
-            global $mysqli;
-            $sql = 'select username from players where token is not null';
-            $st = $mysqli->prepare($sql);
-            $st->execute();
-            $res = $st->get_result();
-            $user1 = $res->fetch_assoc()['username'];
+            
         
 
         function rollthedice(){

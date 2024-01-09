@@ -19,46 +19,98 @@ switch ($r=array_shift($request)) {
                             default: header("HTTP/1.1 404 Not Found"); break;
                         }
         case 'game_status' : 
-                        switch ($b=array_shift($request)) {
-                        case '': exit; break;
-                        default: header("HTTP/1.1 404 Not Found"); break;
-                    }
+                        
+                        show_status();
+                        break;
+                    
 
         case 'players' :  handle_players($method, $request,$input) ; 
-                break;
-            
-        case 'dice' : rollthedice();
                 break; 
         case 'login' : 
                         switch ($b=array_shift($request)) {
-                           case '': show_logged();
-                           case 'B':
-                            handle_login($method, $b, $input);
-                            break;
-                        case 'Y':
-                            handle_login($method, $b, $input);
-                            break;
-                        case 'R':
-                            handle_login($method, $b, $input);
-                            break;
-                        case 'G':
-                            handle_login($method, $b, $input);
-                            break;
+                            case '': show_logged();
+                                break;
+                            case 'B':
+                                handle_users($method, $b, $input);
+                                break;
+                            case 'Y':
+                                handle_users($method, $b, $input);
+                                break;
+                            case 'R':
+                                handle_users($method, $b, $input);
+                                break;
+                            case 'G':
+                                handle_users($method, $b, $input);
+                                break;
+        //case 'Username': if($method = 'PUT'){
 
+        //}
         
         }
                 break;
+        case 'check':
+            checkstatus();
+
+            break;
+        case 'checkaborted':
+            checkaborted();
+            break;
+
+        case $user1 :
+            switch ($b=array_shift($request)){
+            //move_piece($method,$b);
+            case $b :echopiece($b);
+            }
         default: header("HTTP/1.1 404 Not Found"); 
         exit;}
+
+        function echopiece($b){
+            echo 'move piece ';
+            echo $b;
+        }
         
-        
+            global $mysqli;
+            $sql = 'select username from players where token is not null';
+            $st = $mysqli->prepare($sql);
+            $st->execute();
+            $res = $st->get_result();
+            $user1 = $res->fetch_assoc()['username'];
         
 
         function rollthedice(){
             $dice = mt_rand(1,6);
+            echo($dice);
+            if($dice==6){
+                echo 'Move piece or insert one piece from the spawn';
+                checkmove();
+            }
+            global $mysqli;
             
-            if($dice>1)
-            shownextf($dice);
+        }
+        function checkmove(){
+            global $mysqli;
+            $sql = 'select p_turn from game_status';
+            $st = $mysqli->prepare($sql);
+            $st->execute();
+            $res = $st->get_result();
+            $turn = $res->fetch_assoc()['p_turn'];
+        }
+
+        function move_piece($method,$dice){
+            $dice = mt_rand(1,6);
+            $sql = 'select position from board where ';
+            $st = $mysqli->prepare($sql);
+            $st->execute();
+            $res = $st->get_result();
+            $turn = $res->fetch_assoc()['p_turn'];
+            if($method='POST'){
+                //if()
+                global $mysqli;
+                $sql2 = "UPDATE board SET p1_piece1='B1' where position='6'";
+                $st4 = $mysqli->prepare($sql2);
+                $st4->execute();
+            }
+            
         }
 
         function shownextf($d){

@@ -16,16 +16,41 @@
 
 
 -- Dumping database structure for griniaris
+DROP DATABASE IF EXISTS `griniaris`;
 CREATE DATABASE IF NOT EXISTS `griniaris` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `griniaris`;
 
--- Dumping structure for table griniaris.board
-CREATE TABLE IF NOT EXISTS `board` (
-  `p_color` enum('B','Y','R','G') NOT NULL,
+-- Dumping structure for procedure griniaris.block
+DROP PROCEDURE IF EXISTS `block`;
+DELIMITER //
+CREATE PROCEDURE `block`()
+BEGIN
+ SELECT 
+    SUM(CASE WHEN p1_piece1 IS NOT NULL  THEN 1 ELSE 0 END +
+        CASE WHEN p1_piece2 IS NOT NULL THEN 1 ELSE 0 END +
+        CASE WHEN p1_piece3 IS NOT NULL THEN 1 ELSE 0 END +
+        CASE WHEN p1_piece4 IS NOT NULL THEN 1 ELSE 0 END) AS piece_count
+FROM board
+WHERE POSITION=1;
+
+END//
+DELIMITER ;
+
+-- Dumping structure for table griniaris.board1
+DROP TABLE IF EXISTS `board1`;
+CREATE TABLE IF NOT EXISTS `board1` (
+  `real_position` int(11) NOT NULL DEFAULT 0,
+  `p1_piece1` enum('B1','Y1','R1','G1') DEFAULT NULL,
+  `p1_piece2` enum('B2','Y2','R2','G2') DEFAULT NULL,
+  `p1_piece3` enum('B3','Y3','R3','G3') DEFAULT NULL,
+  `p1_piece4` enum('B3','Y3','R3','G3') DEFAULT NULL,
+  `p2_piece1` enum('B1','Y1','R1','G1') DEFAULT NULL,
+  `p2_piece2` enum('B2','Y2','R2','G2') DEFAULT NULL,
+  `p2_piece3` enum('Y','N') DEFAULT NULL,
+  `p2_piece4` enum('Y','N') DEFAULT NULL,
   `game_id` int(11) DEFAULT NULL,
-  `position` int(11) DEFAULT NULL,
+  `position` int(11) DEFAULT 0,
   `p_number` int(11) DEFAULT NULL,
-  PRIMARY KEY (`p_color`),
   KEY `position` (`position`),
   KEY `p_number` (`p_number`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -33,6 +58,7 @@ CREATE TABLE IF NOT EXISTS `board` (
 -- Data exporting was unselected.
 
 -- Dumping structure for table griniaris.board_empty
+DROP TABLE IF EXISTS `board_empty`;
 CREATE TABLE IF NOT EXISTS `board_empty` (
   `p_color` enum('B','Y','R','G') NOT NULL,
   `game_id` int(11) DEFAULT NULL,
@@ -46,6 +72,7 @@ CREATE TABLE IF NOT EXISTS `board_empty` (
 -- Data exporting was unselected.
 
 -- Dumping structure for procedure griniaris.clean_board
+DROP PROCEDURE IF EXISTS `clean_board`;
 DELIMITER //
 CREATE PROCEDURE `clean_board`()
 BEGIN
@@ -55,8 +82,9 @@ END//
 DELIMITER ;
 
 -- Dumping structure for table griniaris.game_status
+DROP TABLE IF EXISTS `game_status`;
 CREATE TABLE IF NOT EXISTS `game_status` (
-  `status` enum('not active','initialized','started','ended','aborded') DEFAULT 'not active',
+  `status` enum('not active','initialized','started','ended','aborted') DEFAULT 'not active',
   `p_turn` enum('B','Y','R','G') DEFAULT NULL,
   `result` enum('B','Y','R','G','D') DEFAULT NULL,
   `last_change` timestamp NULL DEFAULT NULL
@@ -65,6 +93,7 @@ CREATE TABLE IF NOT EXISTS `game_status` (
 -- Data exporting was unselected.
 
 -- Dumping structure for table griniaris.pieces
+DROP TABLE IF EXISTS `pieces`;
 CREATE TABLE IF NOT EXISTS `pieces` (
   `Color` char(1) DEFAULT NULL,
   `Number` int(4) DEFAULT 4
@@ -73,16 +102,19 @@ CREATE TABLE IF NOT EXISTS `pieces` (
 -- Data exporting was unselected.
 
 -- Dumping structure for table griniaris.players
+DROP TABLE IF EXISTS `players`;
 CREATE TABLE IF NOT EXISTS `players` (
   `username` varchar(20) DEFAULT NULL,
   `piece_color` enum('B','R','Y','G') DEFAULT NULL,
   `spawn_pieces` int(4) DEFAULT NULL,
-  `token` int(11) DEFAULT NULL
+  `token` varchar(50) DEFAULT NULL,
+  `last_action` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
 
 -- Dumping structure for procedure griniaris.show_login
+DROP PROCEDURE IF EXISTS `show_login`;
 DELIMITER //
 CREATE PROCEDURE `show_login`()
 BEGIN

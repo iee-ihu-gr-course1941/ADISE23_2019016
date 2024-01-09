@@ -9,8 +9,11 @@ $pass=$DB_PASS;
 
 
 if(gethostname()=='users.iee.ihu.gr') {
-    
-	$mysqli = new mysqli($host, $user, $pass, $db,null,'/home/staff/iee2019016/mysql/run/mysql.sock');
+	try{    
+		$mysqli = new mysqli($host, $user, $pass, $db,null,'/home/staff/iee2019016/mysql/run/mysql.sock');}
+	catch(Exception $e){
+		echo 'Not connected' .$e->getMessage();
+	}
 } else {
     try{
         $mysqli = new mysqli($host, $user, $pass, $db);

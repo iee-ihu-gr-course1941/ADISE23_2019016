@@ -10,7 +10,7 @@ $pass=$DB_PASS;
 
 if(gethostname()=='users.iee.ihu.gr') {
     try{
-	$mysqli = new mysqli('127.0.0.1', 'iee2019016', '', $db,null,'/home/staff/iee2019016/mysql/run/mysql.sock'); }
+	$mysqli = new mysqli($host, 'iee2019016', '', $db,null,'/home/student/iee/2019/iee2019016/mysql/run/mysql.sock'); }
     catch(Exception $e){
         echo 'Not connected ' .$e->getMessage();
     }

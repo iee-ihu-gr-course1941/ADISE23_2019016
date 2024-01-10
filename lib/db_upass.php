@@ -1,6 +1,6 @@
 <?php
 
-$DB_USER='root';
-$DB_PASS='';
+$DB_USER='iee2019016';
+$DB_PASS='Ael1964!@#$&';
 
 ?>

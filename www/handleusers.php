@@ -95,6 +95,7 @@
         }
 
         
+        
         function handle_login($method, $b,$input){
                 $url_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
                 $parts = explode('/', $url_path);
@@ -116,13 +117,19 @@
 	                $st->bind_param('s',$b);
 	                $st->execute();
 	                $res = $st->get_result();
-                
                     
+	                $sql1 = 'select count(username) as loggedin from players where token is not null';
+	                $st1 = $mysqli->prepare($sql1);
+	                $st1->execute();
+	                $result1 = $st1->get_result();
+                    $row1 = $result1->fetch_assoc();
+                    $loggedinCount = $row1['loggedin'];
+                    if($loggedinCount < 2){
                     if ($res->num_rows > 0) {
                         header("HTTP/1.1 400 Bad Request");
                         print json_encode(['errormesg'=>"Player $b is already set. Please select another color."]);
                         exit;
-                    } 
+                    }else{
                     $sql = 'update players set username=?, token=md5(CONCAT( ?, NOW()))  where piece_color=?';
                     $st2 = $mysqli->prepare($sql);
                     $st2->bind_param('sss',$username,$username,$b);
@@ -134,7 +141,10 @@
                     $st->execute();
                     $res = $st->get_result();
                     header('Content-type: application/json');
-                    print json_encode($res->fetch_all(MYSQLI_ASSOC), JSON_PRETTY_PRINT);
+                    print json_encode($res->fetch_all(MYSQLI_ASSOC), JSON_PRETTY_PRINT);}
+                }else{
+                    print json_encode(['errormesg'=>"Players logged 2. No more can play"]);
+                }
             
                 }
         }
@@ -201,6 +211,7 @@
             $res = $st5->get_result();
             $winner = $res->fetch_assoc()['piece_color'];
             $sql2 = "UPDATE game_status SET status='aborted', p_turn=NULL, result='$winner', last_change=NULL";
+
             $st4 = $mysqli->prepare($sql2);
             $st4->execute();
             

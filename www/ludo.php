@@ -2,6 +2,7 @@
 require_once "../lib/dbconnect.php";
 require_once "handleboard.php";
 require_once "handleusers.php";
+require_once "movepieces.php";
 
 $method = $_SERVER['REQUEST_METHOD']; 
 $request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
@@ -22,8 +23,17 @@ switch ($r=array_shift($request)) {
                         
                         show_status();
                         break;
-                    
-
+        case 'movepiece'  :
+                        switch ($b=array_shift($request)) {
+                        case 'Player1':
+                        
+                                    do_move1($method);
+                                    break;
+                        
+                        case 'Player2':
+                                    do_move2($method);
+                                    break;
+                        }
         case 'players' :  handle_players($method, $request,$input) ; 
                 break; 
         case 'login' : 
@@ -56,10 +66,15 @@ switch ($r=array_shift($request)) {
             checkaborted();
             break;
 
-        case 'sth' :
+        case 'rollthedice':
+             switch($b=array_shift($request)){
+                case $b : rollthedice($b);
+             }
+             break;
+        case 'move' :
             switch ($b=array_shift($request)){
             //move_piece($method,$b);
-            case $b :echopiece($b);
+            case $b : checkturn($b);
             }
         default: header("HTTP/1.1 404 Not Found"); 
         exit;}
@@ -72,24 +87,7 @@ switch ($r=array_shift($request)) {
             
         
 
-        function rollthedice(){
-            $dice = mt_rand(1,6);
-            echo($dice);
-            if($dice==6){
-                echo 'Move piece or insert one piece from the spawn';
-                checkmove();
-            }
-            global $mysqli;
-            
-        }
-        function checkmove(){
-            global $mysqli;
-            $sql = 'select p_turn from game_status';
-            $st = $mysqli->prepare($sql);
-            $st->execute();
-            $res = $st->get_result();
-            $turn = $res->fetch_assoc()['p_turn'];
-        }
+        
 
         function move_piece($method,$dice){
             $dice = mt_rand(1,6);
@@ -108,10 +106,6 @@ switch ($r=array_shift($request)) {
             
         }
 
-        function shownextf($d){
-            echo intval($d);
-            echo 'inside shownextf';
-        }
        
 
         function handle_board($method){

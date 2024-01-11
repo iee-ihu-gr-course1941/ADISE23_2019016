@@ -55,37 +55,37 @@
                 if ($newposition >= 1 && $newposition <=40){
                     //echo "Username: $username, Piece: $piece, Oldposition: $oldposition, Newposition: $newposition";
                     checkturn($username);
-                    if($piece=='B1' || $piece=='Y1' || $piece=='R1' || $piece=='G1'){
-                        //echo 'im inside';
-                        global $mysqli;
-                        $sql='call move_piece1(?,?,?)';
-                        $st = $mysqli->prepare($sql);
-                        $st->bind_param('sss',$piece,$oldposition,$newposition);
-                        $st->execute();
-                    }else if($piece=='B2' || $piece=='Y2' || $piece=='R2' || $piece=='G2'){ 
-                        global $mysqli;
-                        $sql='call move_piece2(?,?,?)';
-                        $st = $mysqli->prepare($sql);
-                        $st->bind_param('sss',$piece,$oldposition,$newposition);
-                        $st->execute();
-                    }else if($piece=='B3' || $piece=='Y3' || $piece=='R3' || $piece=='G3'){
-                        global $mysqli;
-                        $sql='call move_piece3(?,?,?)';
-                        $st = $mysqli->prepare($sql);
-                        $st->bind_param('sss',$piece,$oldposition,$newposition);
-                        $st->execute();
-                    }else if($piece=='B4' || $piece=='Y4' || $piece=='R4' || $piece=='G4'){
-                        global $mysqli;
-                        $sql='call move_piece4(?,?,?)';
-                        $st = $mysqli->prepare($sql);
-                        $st->bind_param('sss',$piece,$oldposition,$newposition);
-                        $st->execute();
-                    }
-                        
-            else{
-                echo 'Give valid positions';
-            }
-            //exist($r);
+                        if($piece=='B1' || $piece=='Y1' || $piece=='R1' || $piece=='G1'){
+                            //echo 'im inside';
+                            global $mysqli;
+                            $sql='call move_piece1(?,?,?)';
+                            $st = $mysqli->prepare($sql);
+                            $st->bind_param('sss',$piece,$oldposition,$newposition);
+                            $st->execute();
+                        }else if($piece=='B2' || $piece=='Y2' || $piece=='R2' || $piece=='G2'){ 
+                            global $mysqli;
+                            $sql='call move_piece2(?,?,?)';
+                            $st = $mysqli->prepare($sql);
+                            $st->bind_param('sss',$piece,$oldposition,$newposition);
+                            $st->execute();
+                        }else if($piece=='B3' || $piece=='Y3' || $piece=='R3' || $piece=='G3'){
+                            global $mysqli;
+                            $sql='call move_piece3(?,?,?)';
+                            $st = $mysqli->prepare($sql);
+                            $st->bind_param('sss',$piece,$oldposition,$newposition);
+                            $st->execute();
+                        }else if($piece=='B4' || $piece=='Y4' || $piece=='R4' || $piece=='G4'){
+                            global $mysqli;
+                            $sql='call move_piece4(?,?,?)';
+                            $st = $mysqli->prepare($sql);
+                            $st->bind_param('sss',$piece,$oldposition,$newposition);
+                            $st->execute();
+                        }
+                            
+                else{
+                    echo 'Give valid positions';
+                }
+            
         }
         }}}
 
@@ -106,31 +106,31 @@
                     if ($newposition >= 1 && $newposition <=40){
                         //echo "Username: $username, Piece: $piece, Oldposition: $oldposition, Newposition: $newposition";
                         checkturn($username);
-            if($piece=='B1' || $piece=='Y1' || $piece=='R1' || $piece=='G1'){
-                echo 'im inside';
-                global $mysqli;
-                $sql='call move2_piece1(?,?,?)';
-                $st = $mysqli->prepare($sql);
-                $st->bind_param('sss',$piece,$oldposition,$newposition);
-                $st->execute();
-            }else if($piece=='B2' || $piece=='Y2' || $piece=='R2' || $piece=='G2'){ 
-                global $mysqli;
-                $sql='call move2_piece2(?,?,?)';
-                $st = $mysqli->prepare($sql);
-                $st->bind_param('sss',$piece,$oldposition,$newposition);
-                $st->execute();
-            }else if($piece=='B3' || $piece=='Y3' || $piece=='R3' || $piece=='G3'){
-                global $mysqli;
-                $sql='call move2_piece3(?,?,?)';
-                $st = $mysqli->prepare($sql);
-                $st->bind_param('sss',$piece,$oldposition,$newposition);
-                $st->execute();
-            }else if($piece=='B4' || $piece=='Y4' || $piece=='R4' || $piece=='G4'){
-                global $mysqli;
-                $sql='call move2_piece4(?,?,?)';
-                $st = $mysqli->prepare($sql);
-                $st->bind_param('sss',$piece,$oldposition,$newposition);
-                $st->execute();}
+                            if($piece=='B1' || $piece=='Y1' || $piece=='R1' || $piece=='G1'){
+                                echo 'im inside';
+                                global $mysqli;
+                                $sql='call move2_piece1(?,?,?)';
+                                $st = $mysqli->prepare($sql);
+                                $st->bind_param('sss',$piece,$oldposition,$newposition);
+                                $st->execute();
+                            }else if($piece=='B2' || $piece=='Y2' || $piece=='R2' || $piece=='G2'){ 
+                                global $mysqli;
+                                $sql='call move2_piece2(?,?,?)';
+                                $st = $mysqli->prepare($sql);
+                                $st->bind_param('sss',$piece,$oldposition,$newposition);
+                                $st->execute();
+                            }else if($piece=='B3' || $piece=='Y3' || $piece=='R3' || $piece=='G3'){
+                                global $mysqli;
+                                $sql='call move2_piece3(?,?,?)';
+                                $st = $mysqli->prepare($sql);
+                                $st->bind_param('sss',$piece,$oldposition,$newposition);
+                                $st->execute();
+                            }else if($piece=='B4' || $piece=='Y4' || $piece=='R4' || $piece=='G4'){
+                                global $mysqli;
+                                $sql='call move2_piece4(?,?,?)';
+                                $st = $mysqli->prepare($sql);
+                                $st->bind_param('sss',$piece,$oldposition,$newposition);
+                                $st->execute();}
                 
         }}}}
         

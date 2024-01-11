@@ -41,7 +41,7 @@
         }
 
         function do_move1($method){
-            if($method='POST'){
+            if($method='PUT'){
            
             $path = $_SERVER['REQUEST_URI'];
 
@@ -92,7 +92,7 @@
         }}}
 
         function do_move2($method){
-            if($method='POST'){
+            if($method='PUT'){
                 
                 $path = $_SERVER['REQUEST_URI'];
     

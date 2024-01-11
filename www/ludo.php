@@ -136,7 +136,7 @@ switch ($r=array_shift($request)) {
 
 
         function handle_players($method, $p, $input){
-            echo "How am i inside handle players";
+        
                     switch($b=array_shift($p)) {
                         case '' : show_board_players();
                             break;

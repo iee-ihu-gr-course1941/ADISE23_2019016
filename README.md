@@ -7,9 +7,25 @@
 
 # Περιγραφή βάσης
 
+##### Πίνακας Board
+| Στήλες        | Περιγραφή      | Περιεχόμενο |
+| :---          |     :---:      |          ---: |
+| position      | Η θέση που παίρνει το πιόνι στον πίνακα    | git status    |
+| p1_piece1     | git diff       | git diff      |
+| p1_piece2     | git diff       | git diff      |
+| p1_piece3     | git diff       | git diff      |
+| p1_piece4     | git diff       | git diff      |
+| p2_piece1     | git diff       | git diff      |
+| p2_piece2     | git diff       | git diff      |
+| p2_piece3     | git diff       | git diff      |
+| p2_piece4     | git diff       | git diff      |
 
+##### Πίνακας game_status
 
-
+| Left-aligned | Center-aligned | Right-aligned |
+| :---         |     :---:      |          ---: |
+| git status   | git status     | git status    |
+| git diff     | git diff       | git diff      |
 
 
 

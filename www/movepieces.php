@@ -1,22 +1,6 @@
 <?php
 
 
-        function domove(){
-            global $mysqli;
-            $sql = "CALL move_piece1(?, ?, ?)";
-            $st = $mysqli->prepare($sql);
-
-            // Assuming 'B1', '1', and '2' are strings; adjust the types if needed
-            $param1 = 'B1';
-            $param2 = '1';
-            $param3 = '2';
-
-            $st->bind_param('sss', $param1, $param2, $param3);
-            $st->execute();
-            $st->close();
-            //show_board();
-            
-        }
 
         function rollthedice(){
             $dice = mt_rand(1,6);
@@ -56,13 +40,13 @@
 
         function do_move1($method){
             if($method='PUT'){
-            // Ανακτήστε το μονοπάτι από το URL
+            
             $path = $_SERVER['REQUEST_URI'];
 
-            // Διαχωρίστε το μονοπάτι χρησιμοποιώντας την κάθετο "/"
+            
             $pathSegments = explode('/', $path);
             
-            // Εξάγετε τις τιμές από τα τμήματα
+            
             $username=  isset($pathSegments[5]) ? $pathSegments[5] : null;
             $piece = isset($pathSegments[6]) ? $pathSegments[6] : null;
             $oldposition = isset($pathSegments[7]) ? $pathSegments[7] : null;
@@ -107,13 +91,13 @@
 
         function do_move2($method){
             if($method='PUT'){
-                // Ανακτήστε το μονοπάτι από το URL
+                
                 $path = $_SERVER['REQUEST_URI'];
     
-                // Διαχωρίστε το μονοπάτι χρησιμοποιώντας την κάθετο "/"
+                
                 $pathSegments = explode('/', $path);
                 
-                // Εξάγετε τις τιμές από τα τμήματα
+                
                 $username=  isset($pathSegments[5]) ? $pathSegments[5] : null;
                 $piece = isset($pathSegments[6]) ? $pathSegments[6] : null;
                 $oldposition = isset($pathSegments[7]) ? $pathSegments[7] : null;

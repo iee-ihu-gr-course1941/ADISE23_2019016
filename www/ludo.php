@@ -6,8 +6,13 @@ require_once "movepieces.php";
 
 $method = $_SERVER['REQUEST_METHOD']; 
 $request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
-//$request = explode('/', trim($_SERVER['SCRIPT_NAME'],'/')); 
-// Σε περίπτωση που τρέχουμε php–S 
+
+if(isset($_SERVER['HTTP_X_TOKEN'])) {
+    $input['token']=$_SERVER['HTTP_X_TOKEN'];
+    echo '$input';
+} else {
+    $input['token']='';
+}
 
 $input = json_decode(file_get_contents('php://input'),true);
 switch ($r=array_shift($request)) { 
@@ -33,7 +38,7 @@ switch ($r=array_shift($request)) {
                         case 'Player2':
                                     do_move2($method);
                                     break;
-                        }
+                        }break;
         case 'players' :  handle_players($method, $request,$input) ; 
                 break; 
         case 'login' : 

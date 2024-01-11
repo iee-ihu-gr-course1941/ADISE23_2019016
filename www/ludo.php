@@ -6,13 +6,8 @@ require_once "movepieces.php";
 
 $method = $_SERVER['REQUEST_METHOD']; 
 $request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
-
-if(isset($_SERVER['HTTP_X_TOKEN'])) {
-    $input['token']=$_SERVER['HTTP_X_TOKEN'];
-    echo '$input';
-} else {
-    $input['token']='';
-}
+//$request = explode('/', trim($_SERVER['SCRIPT_NAME'],'/')); 
+// Σε περίπτωση που τρέχουμε php–S 
 
 $input = json_decode(file_get_contents('php://input'),true);
 switch ($r=array_shift($request)) { 
@@ -39,7 +34,8 @@ switch ($r=array_shift($request)) {
                                     do_move2($method);
                                     break;
                         }break;
-        
+        case 'players' :  handle_players($method, $request,$input) ; 
+                break; 
         case 'login' : 
                         switch ($b=array_shift($request)) {
                             case '': show_logged();
@@ -75,10 +71,18 @@ switch ($r=array_shift($request)) {
                 case $b : rollthedice($b);
              }
              break;
-       
+        case 'move' :
+            switch ($b=array_shift($request)){
+            //move_piece($method,$b);
+            case $b : checkturn($b);
+            }
         default: header("HTTP/1.1 404 Not Found"); 
         exit;}
 
+        function echopiece($b){
+            echo 'move piece ';
+            echo $b;
+        }
         
             
         
@@ -132,7 +136,7 @@ switch ($r=array_shift($request)) {
 
 
         function handle_players($method, $p, $input){
-            echo "im inside handle players";
+            echo "How am i inside handle players";
                     switch($b=array_shift($p)) {
                         case '' : show_board_players();
                             break;

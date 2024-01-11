@@ -60,4 +60,4 @@
 ### PUT
 | Μέθοδος      | URL      | Περιγραφή |
 | :---         |     :---:      |          :--- |
-| PUT     | ludo.php/movepiece/{Player1,Player2}/{piece}/{oldpostion}/{newposition}      | Ο παίκτης επιλέγει ποιο πιόνι θέλει να κουνήσει, απο ποιά θέση και σε ποια θέση θέλει να κουνήσει το πιόνι |
+| PUT     | ludo.php/movepiece/{Player1,Player2}/{piece}/{oldpostion}/{newposition}      | Ο παίκτης επιλέγει ποιο πιόνι θέλει να κουνήσει, απο ποιά θέση και σε ποια θέση θέλει να μετακινήσει το πιόνι |

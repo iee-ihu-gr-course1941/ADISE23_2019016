@@ -10,25 +10,34 @@
 ##### Πίνακας Board
 | Στήλες        | Περιγραφή      | Περιεχόμενο |
 | :---          |     :---:      |          ---: |
-| position      | Η θέση που παίρνει το πιόνι στον πίνακα    | git status    |
-| p1_piece1     | git diff       | git diff      |
-| p1_piece2     | git diff       | git diff      |
-| p1_piece3     | git diff       | git diff      |
-| p1_piece4     | git diff       | git diff      |
-| p2_piece1     | git diff       | git diff      |
-| p2_piece2     | git diff       | git diff      |
-| p2_piece3     | git diff       | git diff      |
-| p2_piece4     | git diff       | git diff      |
+| position      | Η θέση που παίρνει το πιόνι στον πίνακα    | 1-44    |
+| p1_piece1     | Πιόνι 1 παίκτη 1       | B1,Y1,R1,G1      |
+| p1_piece2     | Πιόνι 1 παίκτη 1       | B2,Y2,R2,G2      |
+| p1_piece3     | Πιόνι 1 παίκτη 1       | B3,Y3,R3,G3      |
+| p1_piece4     | Πιόνι 1 παίκτη 1       | B4,Y4,R4,G4      |
+| p2_piece1     | Πιόνι 1 παίκτη 2       | B1,Y1,R1,G1     |
+| p2_piece2     | Πιόνι 2 παίκτη 2       | B2,Y2,R2,G2     |
+| p2_piece3     | Πιόνι 3 παίκτη 2       | B3,Y3,R3,G3      |
+| p2_piece4     | Πιόνι 4 παίκτη 2       | B4,Y4,R4,G4     |
 
 ##### Πίνακας game_status
 
-| Left-aligned | Center-aligned | Right-aligned |
+| Στήλες       | Περιγραφή      | Περιεχόμενο |
 | :---         |     :---:      |          ---: |
-| git status   | git status     | git status    |
-| git diff     | git diff       | git diff      |
+| Status       | Κατάσταση παιχνιδιού     | 'not active','initializaed','started','ended'    |
+| p_turn       | Ποιός παίκτης παίζει με βάση το χρώμα του πιονιού      | 'B','R','G','Y'     |
+| result       | Αποτέλεσμα παιχνιδιού      | 'B','R','G','Y','D'     |
+| last_change  | Η στιγμή που έγινε η τελευταία κίνηση που έγινε στη βάση( loogin, κίνηση πιονιού κλπ)      | Timestamp της τελευταίας κίνηση    |
 
 
+##### Πίνακας players
 
-
+| Στήλες       | Περιγραφή      | Περιεχόμενο |
+| :---         |     :---:      |          ---: |
+| username      | Όνομα χρήστη     | Ο,τιδήποτε δώσει ο χρήστης    |
+| piece_color       | Το χρώμα του πιονιού που έχει επιλέξει ο χρήστης    | 'B','R','G','Y'     |
+| spawn_pieces       | Αριθμός πιονιών που δεν έχουν μπεί ακόμα στο επιτραπέζιο      | Ακέραιος αριθμός. Αρχική τιμή 4    |
+| token  | Ένας μοναδικός κωδικός για τον παίκτη που συνδέεται      | Timestamp της τελευταίας κίνηση    |
+| last_change  | Η στιγμή που έγινε η τελευταία κίνηση στο παιχνίδι      | Timestamp της τελευταίας κίνηση    |
 # Περιγραφή API
 

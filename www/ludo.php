@@ -39,8 +39,7 @@ switch ($r=array_shift($request)) {
                                     do_move2($method);
                                     break;
                         }break;
-        case 'players' :  handle_players($method, $request,$input) ; 
-                break; 
+        
         case 'login' : 
                         switch ($b=array_shift($request)) {
                             case '': show_logged();
@@ -76,18 +75,10 @@ switch ($r=array_shift($request)) {
                 case $b : rollthedice($b);
              }
              break;
-        case 'move' :
-            switch ($b=array_shift($request)){
-            //move_piece($method,$b);
-            case $b : checkturn($b);
-            }
+       
         default: header("HTTP/1.1 404 Not Found"); 
         exit;}
 
-        function echopiece($b){
-            echo 'move piece ';
-            echo $b;
-        }
         
             
         

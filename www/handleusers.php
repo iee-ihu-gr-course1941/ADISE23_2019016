@@ -63,7 +63,7 @@
 
 
 
-
+        
 
 
 
@@ -124,6 +124,11 @@
 	                $result1 = $st1->get_result();
                     $row1 = $result1->fetch_assoc();
                     $loggedinCount = $row1['loggedin'];
+                    if($loggedinCount == 1){
+                        $sql = 'call clean_board()';
+                        $mysqli -> query($sql);
+                        show_board();
+                    }
                     if($loggedinCount < 2){
                     if ($res->num_rows > 0) {
                         header("HTTP/1.1 400 Bad Request");
@@ -171,6 +176,9 @@
             if($status['status']=='started') {
                 echo "waiting for player $player to move";
             }
+
+
+
             /*
             $st3=$mysqli->prepare('select count(*) as aborted from players WHERE last_action< (NOW() - INTERVAL 5 MINUTE)');
             $st3->execute();

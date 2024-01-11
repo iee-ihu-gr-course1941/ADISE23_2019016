@@ -124,10 +124,10 @@
 	                $result1 = $st1->get_result();
                     $row1 = $result1->fetch_assoc();
                     $loggedinCount = $row1['loggedin'];
-                    if($loggedinCount == 1){
+                    if($loggedinCount == 0){
                         $sql = 'call clean_board()';
                         $mysqli -> query($sql);
-                        show_board();
+                        //show_board();
                     }
                     if($loggedinCount < 2){
                     if ($res->num_rows > 0) {
@@ -277,10 +277,10 @@
             $res = $st->get_result();
             $active_players = $res->fetch_assoc()['c'];
 
-            $sql = 'SELECT piece_color FROM players  WHERE token IS NOT null ORDER BY RAND() LIMIT 1';
-            $st = $mysqli->prepare($sql);
-            $st->execute();
-            $rescolor = $st->get_result();
+            $sql1 = 'SELECT piece_color FROM players  WHERE token IS NOT null ORDER BY RAND() LIMIT 1';
+            $st1 = $mysqli->prepare($sql1);
+            $st1->execute();
+            $rescolor = $st1->get_result();
             $playerturn = $rescolor->fetch_assoc()['piece_color'];
             
             switch($active_players) {
